@@ -11,10 +11,13 @@ import lab.parking.parking.page01.model.Location;
 public class LocationRepository {
 
     public List<Location> getAllLocation() {
+        // Try to use Data test !!
         List<Location> locationList = new ArrayList<>();
         for(int i=1; i<=20; i++) {
             locationList.add(new Location(i, "Location " + i, i, 10));
         }
+
+        // Try to Filter and ordering data
 
         return locationList;
     }

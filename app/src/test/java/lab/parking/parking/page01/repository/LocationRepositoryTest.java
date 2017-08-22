@@ -10,6 +10,7 @@ import lab.parking.parking.page01.model.Location;
 import static org.junit.Assert.*;
 
 public class LocationRepositoryTest {
+
     @Test public void
     กรองข้อมูลของที่จอดรถที่ไม่ว่างออกไป(){
         List<Location> locationList = new ArrayList<>();
