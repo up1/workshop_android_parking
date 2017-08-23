@@ -65,21 +65,4 @@ public class MainActivityTest {
 
 }
 
-class ListMatcher {
-    public static Matcher<View> withListSize (final int size) {
-        return new TypeSafeMatcher<View>() {
-            int length;
-            @Override public boolean matchesSafely (final View view) {
-                length = ((AdapterView) view).getAdapter().getCount();
-
-                return length == size;
-            }
-
-            @Override public void describeTo (final Description description) {
-                description.appendText ("ListView should have " + size + " items, the actual size is " + length);
-            }
-        };
-    }
-}
-
 

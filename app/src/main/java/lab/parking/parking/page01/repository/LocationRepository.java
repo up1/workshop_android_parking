@@ -7,8 +7,41 @@ import java.util.Comparator;
 import java.util.List;
 
 import lab.parking.parking.page01.model.Location;
+import lab.parking.parking.page01.network.LocationAPI;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LocationRepository {
+
+    public static String BASE_URL = "http://xxx.com/";
+
+    public void getDataFromLocationAPI(
+            final LocationAPI.LocationAPIListener listener) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        LocationAPI locationAPI = retrofit.create(LocationAPI.class);
+        final Call<List<Location>> call = locationAPI.getAll(0, 0);
+
+        call.enqueue(new Callback<List<Location>>() {
+            @Override
+            public void onResponse(Call<List<Location>> call,
+                                   Response<List<Location>> response) {
+                if(response.isSuccessful()) {
+                    listener.onSuccess(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Location>> call, Throwable t) {
+                listener.onSuccess(new ArrayList<Location>());
+            }
+        });
+    }
 
     public List<Location> getAllLocation() {
         // Try to use Data test !!

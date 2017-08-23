@@ -25,6 +25,10 @@ public class LocationAdapter extends BaseAdapter {
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
+    public void setDatasource(List<Location> locationList) {
+        this.mDataSource = locationList;
+    }
+
     @Override
     public int getCount() {
         return mDataSource.size();
